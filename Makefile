@@ -1,11 +1,12 @@
-SRCS		= srcs/main.c srcs/parsing.c srcs/init.c srcs/toolbox.c srcs/activity.c
+SRCS		= srcs/main.c srcs/parsing.c srcs/init.c \
+			srcs/toolbox.c srcs/activity.c srcs/toolbox1.c 
 
 OBJS		= ${SRCS:.c=.o}
 
 INCLUDES	= includes/
 NAME  		= philo
 CC 			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g3 
+CFLAGS		= -Wall -Wextra -Werror 
 RM			= rm -f
 
 GREY=\033[0;37m

@@ -6,12 +6,18 @@
 /*   By: rr <rr@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:46:28 by rr                #+#    #+#             */
-/*   Updated: 2023/10/04 12:49:42 by rr               ###   ########.fr       */
+/*   Updated: 2023/10/06 23:34:21 by rr               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	ft_free_all(t_data *data)
+{
+	ft_destroy_mutex(data);
+	free(data->philo);
+	free(data->fork);
+}
 int	ft_atoi(const char *str)
 {
 	int	i;
