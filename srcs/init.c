@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdjebal <akdjebal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rr <rr@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:51:31 by rr                #+#    #+#             */
-/*   Updated: 2023/10/05 15:32:09 by akdjebal         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:24:15 by rr               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void init_mutex(t_data *data)
     data->fork = ft_calloc(data->count_philo, sizeof(pthread_mutex_t));
     if (!data->fork)
         free(data->philo);
-    pthread_mutex_init(&data->write_mutex, NULL);
+    pthread_mutex_init(&data->write, NULL);
     pthread_mutex_init(&data->death_mutex, NULL);
     pthread_mutex_init(&data->eat_mutex, NULL);
 }
@@ -81,7 +81,7 @@ void	init_philo_tab(t_data *data)
 		pthread_create(&data->philo[i].thread, NULL, routine, &data->philo[i]);
 		i++;
 	}
-	pthread_create(&data, NULL, check_routine, &data->philo[0]);
+	pthread_create(&data->check_death, NULL, check_routine, &data->philo[0]);
 	pthread_join(data->check_death, NULL);
 	i = 0;
 	while (i <= nb)
@@ -91,3 +91,24 @@ void	init_philo_tab(t_data *data)
 	}
 }
 
+int 	display_philo_status(long time, int philo_id, char event, t_data *data)
+{
+	if (check_death(data) == 0 && event != 'D')
+		return (0);
+	pthread_mutex_lock(&data->write);
+	if (event == 'E')
+		printf("%ld ms %d is eating\n", time, philo_id);
+	else if (event == 'F')
+		printf("%ld ms %d has taken a fork\n", time, philo_id);
+	else if (event == 'S')
+		printf("%ld ms %d is sleeping\n", time, philo_id);
+	else if (event == 'T')
+		printf("%ld ms %d is thinking\n", time, philo_id);
+	else if (event == 'D')
+	{
+		return (printf("%ld ms %d died\n", time, philo_id),
+			pthread_mutex_unlock(&data->write), 0);
+	}
+	pthread_mutex_unlock(&data->write);
+	return (1);
+}
