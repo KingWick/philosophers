@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   toolbox1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rr <rr@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: akdjebal <akdjebal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 23:30:48 by rr                #+#    #+#             */
-/*   Updated: 2023/10/06 23:34:15 by rr               ###   ########.fr       */
+/*   Updated: 2023/10/07 13:19:32 by akdjebal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_destroy_mutex(t_data *arg)
 	pthread_mutex_destroy(&arg->write);
 	pthread_mutex_destroy(&arg->eat_mutex);
 }
+
 int	ft_usleep(t_philo *data, unsigned long int time)
 {
 	unsigned long int	start;
@@ -70,4 +71,3 @@ int	ft_usleep(t_philo *data, unsigned long int time)
 	}
 	return (1);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rr <rr@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: akdjebal <akdjebal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:46:28 by rr                #+#    #+#             */
-/*   Updated: 2023/10/06 23:34:21 by rr               ###   ########.fr       */
+/*   Updated: 2023/10/07 13:18:22 by akdjebal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_free_all(t_data *data)
 	free(data->philo);
 	free(data->fork);
 }
+
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -51,7 +52,7 @@ int	ft_isdigit(int c)
 
 int	valid_atoi(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -63,7 +64,7 @@ int	valid_atoi(char *str)
 	return (1);
 }
 
-int check_args(int ac, char **av)
+int	check_args(int ac, char **av)
 {
 	if (valid_atoi(av[1]) && valid_atoi(av[2]) && valid_atoi(av[3])
 		&& valid_atoi(av[4]))
